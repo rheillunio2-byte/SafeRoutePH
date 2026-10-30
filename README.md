@@ -8,44 +8,44 @@ SafeRoute PH is initially focused on **Cagayan de Oro City, Misamis Oriental, Ph
 
 # 🖥️ Application Preview
 
-\<table>
-&#x20; \<tr>
-&#x20;   \<td align="center">
-&#x20;     \<img src="images/Dashboard.PNG" width="400" alt="SafeRoute PH Dashboard">
-&#x20;     \<br>
-&#x20;     \<b>Main Dashboard\</b>
-&#x20;   \</td>
-&#x20;   \<td align="center">
-&#x20;     \<img src="images/Monitoring-Center.PNG" width="400" alt="SafeRoute PH Monitoring Center">
-&#x20;     \<br>
-&#x20;     \<b>Disaster Monitoring Center\</b>
-&#x20;   \</td>
-&#x20; \</tr>
-&#x20; \<tr>
-&#x20;   \<td align="center">
-&#x20;     \<img src="images/City-Map.PNG" width="400" alt="SafeRoute PH Interactive Map">
-&#x20;     \<br>
-&#x20;     \<b>Interactive City Map\</b>
-&#x20;   \</td>
-&#x20;   \<td align="center">
-&#x20;     \<img src="images/Evacuation-Planner.PNG" width="400" alt="SafeRoute PH Evacuation Planner">
-&#x20;     \<br>
-&#x20;     \<b>Household Evacuation Planner\</b>
-&#x20;   \</td>
-&#x20; \</tr>
-&#x20; \<tr>
-&#x20;   \<td align="center">
-&#x20;     \<img src="images/Go-Bag-Checklist.PNG" width="400" alt="SafeRoute PH Go-Bag Checklist">
-&#x20;     \<br>
-&#x20;     \<b>Emergency Go-Bag Checklist\</b>
-&#x20;   \</td>
-&#x20;   \<td align="center">
-&#x20;     \<img src="images/Hazard-Guides.PNG" width="400" alt="SafeRoute PH Hazard Guides">
-&#x20;     \<br>
-&#x20;     \<b>Disaster Preparedness Guides\</b>
-&#x20;   \</td>
-&#x20; \</tr>
-\</table>
+<table>
+  <tr>
+    <td align="center">
+      <img src="images/Dashboard.PNG" width="400" alt="SafeRoute PH Dashboard">
+      <br>
+      <b>Main Dashboard</b>
+    </td>
+    <td align="center">
+      <img src="images/Emergency-Contacts.PNG" width="400" alt="SafeRoute PH Monitoring Center">
+      <br>
+      <b>Disaster Monitoring Center</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="images/City-Map.PNG" width="400" alt="SafeRoute PH Interactive Map">
+      <br>
+      <b>Interactive City Map</b>
+    </td>
+    <td align="center">
+      <img src="images/Evacuation-Planner.PNG" width="400" alt="SafeRoute PH Evacuation Planner">
+      <br>
+      <b>Household Evacuation Planner</b>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="images/Go-Bag-Checklist.PNG" width="400" alt="SafeRoute PH Go-Bag Checklist">
+      <br>
+      <b>Emergency Go-Bag Checklist</b>
+    </td>
+    <td align="center">
+      <img src="images/Hazard-Guides.PNG" width="400" alt="SafeRoute PH Hazard Guides">
+      <br>
+      <b>Disaster Preparedness Guides</b>
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -380,9 +380,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribu
 
 # 📄 License
 
-This project is licensed under the **MIT License**.
-
-See the [LICENSE](LICENSE) file for more information.
+This project is licensed under the **MIT License**. See the [LICENSE](https://github.com/rheillunio2-byte/SafeRoutePH?tab=contributing-ov-file) file for more details.
 
 ---
 
