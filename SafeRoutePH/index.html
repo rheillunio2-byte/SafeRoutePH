@@ -1,0 +1,362 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b1724">
+  <meta name="description" content="SafeRoute PH helps Cagayan de Oro residents access disaster preparedness information, emergency contacts, and personal evacuation planning tools.">
+  <title>SafeRoute PH | Cagayan de Oro</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="#dashboard">
+        <span class="brand-icon">S</span>
+        <span>
+          <strong>SafeRoute<span>PH</span></strong>
+          <small>DISASTER PREPAREDNESS</small>
+        </span>
+      </a>
+
+      <div class="sidebar-label">WORKSPACE</div>
+      <nav class="navigation">
+        <a href="#dashboard" class="nav-link active"><span>⌂</span> Dashboard</a>
+        <a href="#map-section" class="nav-link"><span>⌖</span> City Map</a>
+        <a href="#planner" class="nav-link"><span>▤</span> Evacuation Planner</a>
+        <a href="#go-bag" class="nav-link"><span>▣</span> Go-Bag Checklist</a>
+        <a href="#hazards" class="nav-link"><span>⚠</span> Hazard Guides</a>
+        <a href="#emergency" class="nav-link"><span>☎</span> Emergency Contacts</a>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-note">
+          <span class="note-icon">✦</span>
+          <strong>Preparedness starts with you.</strong>
+          <p>Know your risks. Prepare your family. Stay informed.</p>
+        </div>
+        <div class="sidebar-footer">SAFE ROUTE PH · CDO PILOT</div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="dashboard">
+      <header class="topbar">
+        <button class="menu-button" id="menu-toggle" aria-label="Toggle navigation">☰</button>
+        <div class="breadcrumb">Philippines <span>/</span> Northern Mindanao <span>/</span> <strong>Cagayan de Oro</strong></div>
+        <div class="topbar-right">
+          <span class="pilot-tag">CDO PILOT PROJECT</span>
+          <span class="profile-avatar">PH</span>
+        </div>
+      </header>
+
+      <div class="content-wrap">
+        <section class="welcome-section">
+          <div>
+            <div class="eyebrow"><span class="status-dot"></span> YOUR LOCAL PREPAREDNESS HUB</div>
+            <h1>Be prepared.<br><span>Stay one step ahead.</span></h1>
+            <p class="welcome-description">
+              Disaster preparedness information and planning tools for residents of Cagayan de Oro City.
+            </p>
+            <div class="welcome-actions">
+              <a class="btn btn-primary" href="#planner">Create evacuation plan <span>→</span></a>
+              <a class="btn btn-outline" href="#hazards">Explore safety guides</a>
+            </div>
+          </div>
+          <div class="welcome-illustration" aria-hidden="true">
+            <div class="illustration-ring ring-one"></div>
+            <div class="illustration-ring ring-two"></div>
+            <div class="illustration-center">⌖</div>
+            <div class="illustration-caption">CDO<br><strong>READY</strong></div>
+          </div>
+        </section>
+
+        <section class="notice-banner">
+          <div class="notice-symbol">!</div>
+          <div>
+            <strong>Emergency reminder</strong>
+            <p>For immediate emergencies, contact 911 and follow instructions from local authorities. This website is an independent preparedness project, not an official emergency-response service.</p>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">YOUR QUICK OVERVIEW</div>
+              <h2>Preparedness at a glance</h2>
+            </div>
+            <span class="section-caption">Cagayan de Oro City</span>
+          </div>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <div class="stat-icon teal">⌖</div>
+              <div class="stat-label">Coverage area</div>
+              <div class="stat-value">CDO City</div>
+              <div class="stat-subtitle">Initial pilot coverage</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-icon orange">⚠</div>
+              <div class="stat-label">Hazard guides</div>
+              <div class="stat-value">03</div>
+              <div class="stat-subtitle">Flood, earthquake, typhoon</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-icon blue">☎</div>
+              <div class="stat-label">Emergency hotline</div>
+              <div class="stat-value">911</div>
+              <div class="stat-subtitle">National emergency hotline</div>
+            </article>
+            <article class="stat-card">
+              <div class="stat-icon purple">▣</div>
+              <div class="stat-label">Your go-bag</div>
+              <div class="stat-value" id="bag-progress">0%</div>
+              <div class="stat-subtitle">Checklist completion</div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section-block map-section" id="map-section">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">LOCATION AWARENESS</div>
+              <h2>Explore Cagayan de Oro</h2>
+              <p class="section-description">Explore the city map and identify your surroundings.</p>
+            </div>
+            <button class="btn btn-outline btn-small" id="locate-button">⌖ Find my location</button>
+          </div>
+
+          <div class="map-card">
+            <div class="map-toolbar">
+              <div class="map-title"><span class="map-live-dot"></span> CDO LOCATION MAP</div>
+              <span class="map-caption">OpenStreetMap</span>
+            </div>
+            <div id="map" role="application" aria-label="Interactive map of Cagayan de Oro City"></div>
+            <div class="map-footer">
+              <span>ⓘ Map marker indicates the city-center orientation point only.</span>
+              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">Map data attribution</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block" id="emergency">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">IMPORTANT NUMBERS</div>
+              <h2>Emergency contacts</h2>
+              <p class="section-description">Keep these official contact details accessible.</p>
+            </div>
+          </div>
+
+          <div class="contact-grid">
+            <article class="contact-card emergency-card">
+              <div class="contact-icon">☎</div>
+              <div class="contact-info">
+                <span class="contact-type">NATIONAL EMERGENCY HOTLINE</span>
+                <h3>911</h3>
+                <p>For immediate emergencies.</p>
+              </div>
+              <a class="contact-action" href="tel:911">Call ↗</a>
+            </article>
+
+            <article class="contact-card">
+              <div class="contact-icon teal">✚</div>
+              <div class="contact-info">
+                <span class="contact-type">CDO CDRRMD</span>
+                <h3>(088) 853-9393</h3>
+                <p>City Disaster Risk Reduction and Management Department.</p>
+              </div>
+              <a class="contact-action" href="tel:+63888539393">Call ↗</a>
+            </article>
+
+            <article class="contact-card">
+              <div class="contact-icon blue">☎</div>
+              <div class="contact-info">
+                <span class="contact-type">CDO CDRRMD MOBILE</span>
+                <h3>0917 770 5044</h3>
+                <p>Additional CDRRMD contact number.</p>
+              </div>
+              <a class="contact-action" href="tel:+639177705044">Call ↗</a>
+            </article>
+
+            <article class="contact-card">
+              <div class="contact-icon purple">✉</div>
+              <div class="contact-info">
+                <span class="contact-type">CDO CDRRMD EMAIL</span>
+                <h3 class="email-value">cdo.ororescue911@gmail.com</h3>
+                <p>Official department email listed in city resources.</p>
+              </div>
+              <a class="contact-action" href="mailto:cdo.ororescue911@gmail.com">Email ↗</a>
+            </article>
+          </div>
+          <p class="small-disclaimer">Contact information should be reconfirmed with the responsible office. Do not rely on this page as a replacement for emergency dispatch.</p>
+        </section>
+
+        <section class="section-block" id="planner">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">PLAN BEFORE IT HAPPENS</div>
+              <h2>Your evacuation planner</h2>
+              <p class="section-description">Prepare a basic household plan before an emergency occurs.</p>
+            </div>
+          </div>
+
+          <div class="planner-card">
+            <form id="evacuation-form" class="planner-form">
+              <div class="form-grid">
+                <label>
+                  Household / plan name
+                  <input type="text" id="household" placeholder="e.g. Family evacuation plan" maxlength="80">
+                </label>
+                <label>
+                  Barangay
+                  <input type="text" id="barangay" placeholder="Enter your barangay" maxlength="80">
+                </label>
+                <label>
+                  Meeting point
+                  <input type="text" id="meeting-point" placeholder="A familiar, agreed meeting location" maxlength="120">
+                </label>
+                <label>
+                  Emergency contact
+                  <input type="tel" id="family-contact" placeholder="Family contact number" maxlength="30">
+                </label>
+              </div>
+              <div class="planner-warning">
+                <strong>Important:</strong> Confirm your evacuation destination with your barangay or CDRRMD. Do not assume a location is an official evacuation center.
+              </div>
+              <button class="btn btn-primary" type="submit">Save my plan →</button>
+            </form>
+            <div class="saved-plan" id="saved-plan" aria-live="polite">
+              <div class="empty-state-icon">▤</div>
+              <strong>No saved plan yet</strong>
+              <p>Complete the form to create your household plan on this device.</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block" id="go-bag">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">PREPARE YOUR ESSENTIALS</div>
+              <h2>Emergency go-bag checklist</h2>
+              <p class="section-description">Check the essentials you already have prepared.</p>
+            </div>
+            <span class="progress-label" id="checklist-count">0 of 12 items</span>
+          </div>
+
+          <div class="checklist-card">
+            <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+            <div class="checklist-grid" id="checklist">
+              <label class="check-item"><input type="checkbox" value="Water"><span class="custom-check"></span><span><strong>Drinking water</strong><small>Safe drinking water supply</small></span></label>
+              <label class="check-item"><input type="checkbox" value="Food"><span class="custom-check"></span><span><strong>Ready-to-eat food</strong><small>Non-perishable food</small></span></label>
+              <label class="check-item"><input type="checkbox" value="First aid"><span class="custom-check"></span><span><strong>First-aid kit</strong><small>Basic first-aid supplies</small></span></label>
+              <label class="check-item"><input type="checkbox" value="Medicine"><span class="custom-check"></span><span><strong>Personal medicines</strong><small>Necessary medicines and prescriptions</small></span></label>
+              <label class="check-item"><input type="checkbox" value="Flashlight"><span class="custom-check"></span><span><strong>Flashlight</strong><small>With extra batteries</small></span></label>
+              <label class="check-item"><input type="checkbox" value="Power bank"><span class="custom-check"></span><span><strong>Power bank</strong><small>Fully charged backup power</small></span></label>
+              <label class="check-item"><input type="checkbox" value="Documents"><span class="custom-check"></span><span><strong>Important documents</strong><small>Copies in a waterproof pouch</small></span></label>
+              <label class="check-item"><input type="checkbox" value="Clothes"><span class="custom-check"></span><span><strong>Extra clothing</strong><small>Dry clothes and underwear</small></span></label>
+              <label class="check-item"><input type="checkbox" value="Hygiene"><span class="custom-check"></span><span><strong>Hygiene supplies</strong><small>Soap, tissue, sanitizer</small></span></label>
+              <label class="check-item"><input type="checkbox" value="Whistle"><span class="custom-check"></span><span><strong>Emergency whistle</strong><small>For signaling for help</small></span></label>
+              <label class="check-item"><input type="checkbox" value="Cash"><span class="custom-check"></span><span><strong>Emergency cash</strong><small>Small bills and coins</small></span></label>
+              <label class="check-item"><input type="checkbox" value="Masks"><span class="custom-check"></span><span><strong>Face masks</strong><small>Personal protective supplies</small></span></label>
+            </div>
+            <div class="checklist-footer">
+              <span id="checklist-message">Start preparing your emergency kit.</span>
+              <button class="text-button" id="reset-checklist" type="button">Reset checklist</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block" id="hazards">
+          <div class="section-heading">
+            <div>
+              <div class="eyebrow">KNOW WHAT TO DO</div>
+              <h2>Disaster preparedness guides</h2>
+              <p class="section-description">Basic safety reminders for common hazards.</p>
+            </div>
+          </div>
+
+          <div class="hazard-grid">
+            <article class="hazard-card">
+              <div class="hazard-visual flood-visual">〰</div>
+              <div class="hazard-content">
+                <span class="hazard-tag flood-tag">FLOODING</span>
+                <h3>When floodwaters rise</h3>
+                <p>Move to higher ground when instructed. Avoid walking or driving through floodwater.</p>
+                <ul>
+                  <li>Monitor official weather and flood advisories.</li>
+                  <li>Move electrical appliances and important documents to higher places when safe.</li>
+                  <li>Evacuate early when authorities advise it.</li>
+                </ul>
+                <a href="https://www.pagasa.dost.gov.ph/flood/cagayan-de-oro" target="_blank" rel="noopener noreferrer">Check PAGASA flood information ↗</a>
+              </div>
+            </article>
+
+            <article class="hazard-card">
+              <div class="hazard-visual quake-visual">⌁</div>
+              <div class="hazard-content">
+                <span class="hazard-tag quake-tag">EARTHQUAKE</span>
+                <h3>During ground shaking</h3>
+                <p>Protect yourself using Drop, Cover, and Hold On.</p>
+                <ul>
+                  <li>Stay away from windows and heavy objects.</li>
+                  <li>Do not use elevators during or immediately after shaking.</li>
+                  <li>Expect possible aftershocks and follow official instructions.</li>
+                </ul>
+                <a href="https://www.phivolcs.dost.gov.ph/" target="_blank" rel="noopener noreferrer">Visit PHIVOLCS ↗</a>
+              </div>
+            </article>
+
+            <article class="hazard-card">
+              <div class="hazard-visual storm-visual">☁</div>
+              <div class="hazard-content">
+                <span class="hazard-tag storm-tag">TROPICAL CYCLONE</span>
+                <h3>Before a strong storm</h3>
+                <p>Prepare your household and stay updated through official weather bulletins.</p>
+                <ul>
+                  <li>Secure loose outdoor objects before strong winds arrive.</li>
+                  <li>Charge phones and prepare emergency supplies.</li>
+                  <li>Follow evacuation orders and avoid exposed areas.</li>
+                </ul>
+                <a href="https://www.pagasa.dost.gov.ph/" target="_blank" rel="noopener noreferrer">Visit PAGASA ↗</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="official-section">
+          <div>
+            <div class="eyebrow">TRUST OFFICIAL INFORMATION</div>
+            <h2>Stay informed. Stay prepared.</h2>
+            <p>Use verified government resources for current advisories, warnings, and instructions.</p>
+          </div>
+          <div class="official-links">
+            <a href="https://cdrrmd.cagayandeoro.gov.ph/" target="_blank" rel="noopener noreferrer">CDO CDRRMD ↗</a>
+            <a href="https://www.pagasa.dost.gov.ph/flood/cagayan-de-oro" target="_blank" rel="noopener noreferrer">PAGASA CDO ↗</a>
+            <a href="https://hazardhunter.georisk.gov.ph/map" target="_blank" rel="noopener noreferrer">HazardHunterPH ↗</a>
+            <a href="https://ehotlines.e.gov.ph/" target="_blank" rel="noopener noreferrer">PH eHotlines ↗</a>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <a class="brand footer-brand" href="#dashboard">
+            <span class="brand-icon">S</span>
+            <span><strong>SafeRoute<span>PH</span></strong><small>CDO PILOT PROJECT</small></span>
+          </a>
+          <p>Independent disaster-preparedness project. Not affiliated with or endorsed by any government agency.</p>
+          <span>© 2026 SafeRoute PH</span>
+        </footer>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
