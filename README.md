@@ -1,5 +1,14 @@
 # 🌏 SafeRoute PH — Disaster Preparedness and Monitoring Platform
 
+![HTML5](https://img.shields.io/badge/HTML5-Structure-E34F26?logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-Styling-1572B6?logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6%2B-F7DF1E?logo=javascript&logoColor=black)
+![Leaflet](https://img.shields.io/badge/Maps-Leaflet-199900?logo=leaflet&logoColor=white)
+![OpenStreetMap](https://img.shields.io/badge/Map%20Data-OpenStreetMap-7EBC6F?logo=openstreetmap&logoColor=white)
+![Storage](https://img.shields.io/badge/Storage-localStorage-orange)
+![Deployment](https://img.shields.io/badge/Deployment-GitHub%20Pages-222222?logo=githubpages&logoColor=white)
+![Status](https://img.shields.io/badge/Project-In%20Development-orange)
+
 A **web-based disaster preparedness and information platform** designed to help individuals and households access emergency resources, organize evacuation plans, and prepare for potential disasters.
 
 SafeRoute PH is initially focused on **Cagayan de Oro City, Misamis Oriental, Philippines**, bringing essential disaster preparedness tools and official information sources together in one accessible dashboard.
@@ -292,7 +301,7 @@ SafeRoutePH/
 │
 └── images/
     ├── Dashboard.PNG
-    ├── Monitoring-Center.PNG
+    ├── Emergency-Contacts.PNG
     ├── City-Map.PNG
     ├── Evacuation-Planner.PNG
     ├── Go-Bag-Checklist.PNG
@@ -380,7 +389,7 @@ Please read [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on how to contribu
 
 # 📄 License
 
-This project is licensed under the **MIT License**. See the [LICENSE](https://github.com/rheillunio2-byte/SafeRoutePH?tab=contributing-ov-file) file for more details.
+This project is licensed under the **MIT License**. See the [LICENSE](https://github.com/rheillunio2-byte/SafeRoutePH?tab=MIT-1-ov-file) file for more details.
 
 ---
 
